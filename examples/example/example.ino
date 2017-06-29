@@ -73,7 +73,7 @@ int BITS_PER_PIXEL = 4 ; // 2^4 = 16 colors
 // Initialize the driver
 ILI9341_SPI tft = ILI9341_SPI(TFT_CS, TFT_DC);
 MiniGrafx gfx = MiniGrafx(&tft, BITS_PER_PIXEL, palette);
-QRcode qrcode (&gfx, 0, 1);
+QRcode qrcode (&gfx, 1, 0);
 
 void setup() {
   Serial.begin(115200);
@@ -84,13 +84,17 @@ void setup() {
 
   // Initialize the driver only once
   gfx.init();
-  // fill the buffer with black
-  gfx.fillBuffer(0);
-  // write the buffer to the display
-  gfx.commit();
 
+  // set the scale factor
+  qrcode.setScale(3);
+
+  // clear the buffer
   gfx.fillBuffer(0);
-  qrcode.create(20, 20, "Hello world.");
+
+  // draw the code at position 20, 20 with content "Hello world"
+  qrcode.drawQRCode(20, 20, "Hello world.");
+
+  // write it to the display
   gfx.commit();
 }
 

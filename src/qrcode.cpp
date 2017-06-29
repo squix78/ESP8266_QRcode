@@ -11,10 +11,14 @@ QRcode::QRcode(MiniGrafx *gfx, uint16_t foregroundColor, uint16_t backgroundColo
 
 void QRcode::render(int16_t x, int16_t y, uint16_t color){
 	gfx->setColor(color);
-	gfx->setPixel(x, y);
+	gfx->fillRect(x, y, scale, scale);
 }
 
-void QRcode::create(int16_t xOffset, int16_t yOffset, String message) {
+void QRcode::setScale(uint8_t scale) {
+	this->scale = scale;
+}
+
+void QRcode::drawQRCode(int16_t xOffset, int16_t yOffset, String message) {
 
   // create QR code
   message.toCharArray((char *)strinbuf,260);
@@ -25,26 +29,28 @@ void QRcode::create(int16_t xOffset, int16_t yOffset, String message) {
     for (byte y = 0; y < WD; y++) {
       if ( QRBIT(x,y) &&  QRBIT((x+1),y)) {
         // black square on top of black square
-        render(x + xOffset, y + yOffset, foregroundColor);
-        render((x+1 + xOffset), y + yOffset, foregroundColor);
+        render(x * scale + xOffset, y * scale + yOffset, foregroundColor);
+        render((x+1) * scale + xOffset, y * scale + yOffset, foregroundColor);
       }
       if (!QRBIT(x,y) &&  QRBIT((x+1),y)) {
         // white square on top of black square
-        render(x + xOffset, y + yOffset, 0);
-        render((x+1 + xOffset), y + yOffset, foregroundColor);
+        render(x * scale + xOffset, y * scale + yOffset, backgroundColor);
+        render((x+1) * scale + xOffset, y * scale + yOffset, foregroundColor);
       }
       if ( QRBIT(x,y) && !QRBIT((x+1),y)) {
         // black square on top of white square
-        render(x + xOffset, y + yOffset, foregroundColor);
-        render((x+1 + xOffset), y + yOffset, 0);
+        render(x * scale + xOffset, y * scale + yOffset, foregroundColor);
+        render((x+1) * scale + xOffset, y * scale + yOffset, backgroundColor);
       }
       if (!QRBIT(x,y) && !QRBIT((x+1),y)) {
         // white square on top of white square
-        render(x + xOffset, y + yOffset, backgroundColor);
-        render((x+1 + xOffset), y + yOffset, backgroundColor);
+        render(x * scale + xOffset, y * scale + yOffset, backgroundColor);
+        render((x+1) * scale + xOffset, y * scale + yOffset, backgroundColor);
       }
     }
     Serial.println();
   }
+
+
 
 }
