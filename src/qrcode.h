@@ -1,16 +1,14 @@
-#include "OLEDDisplay.h"
+#include <MiniGrafx.h>
 
 class QRcode
 {
 	private:
-		OLEDDisplay *display;
-		void render(int x, int y, int color);
+		MiniGrafx *gfx;
+		void render(int16_t x, int16_t y, uint16_t color);
+
+		uint16_t foregroundColor, backgroundColor;
 
 	public:
-		QRcode(OLEDDisplay *display);
-
-		void init();
-		void debug();
-		void screenwhite();
-		void create(String message);
+		QRcode(MiniGrafx *gfx, uint16_t foregroundColor, uint16_t backgroundColor);
+		void create(int16_t xOffset, int16_t yOffset, String message);
 };

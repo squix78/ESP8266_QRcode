@@ -1,12 +1,12 @@
 {
-  "name": "ESP8266 QRcode",
-  "version": "2.0.0",
-  "keywords": "ssd1306, oled, display, i2c, qr code",
-  "description": "ESP8266 Generate QRCode for SSD1306 oled displays 128*64 pixel",
+  "name": "MiniGrafx QRcode",
+  "version": "3.0.0",
+  "keywords": "ssd1306, oled, display, i2c, qr code, minigrafx",
+  "description": "ESP8266 Generate QRCode for MiniGrafx library",
   "repository":
   {
     "type": "git",
-    "url": "https://github.com/anunpanya/ESP8266_QRcode.git"
+    "url": "https://github.com/squix78/MiniGrafx_QRcode.git"
   },
   "authors":
   [
@@ -14,6 +14,11 @@
         "name": "Anun Panya",
         "email": "aspirinenun@gmail.com",
         "url": "https://www.facebook.com/anun.panya"
+    },
+    {
+        "name": "Daniel Eichhorn",
+        "email": "squix78@gmail.com",
+        "url": "https://blog.squix.org"
     }
   ],
   "frameworks": "arduino",

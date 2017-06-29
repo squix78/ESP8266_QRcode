@@ -22,5 +22,3 @@ void qrencode(void);
 #ifdef __cplusplus
 } // extern "C"
 #endif
-
-
